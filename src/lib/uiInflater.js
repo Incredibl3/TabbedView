@@ -1,5 +1,5 @@
 import ui.View as View;
-import src.config.config as config;
+import src.config as config;
 
 var resolveClass = function(className) {
 	if (className) {

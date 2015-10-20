@@ -5,8 +5,11 @@ var BG_HEIGHT = 1024;
 var TAB_VERTICAL_HEIGHT = 100;
 
 exports = {
-	layout: [
+	bg_width: BG_WIDTH,
+	bg_height: BG_HEIGHT,
+	layout: {
 		bottom : {
+			tabViewHeight: TAB_VERTICAL_HEIGHT,
 			layout: 'linear',
 			direction: 'vertical',
 			layoutWidth: '100%',
@@ -25,5 +28,5 @@ exports = {
 				zIndex: 9999
 			}
 		}
-	] 
+	}
 };

@@ -10,132 +10,126 @@
  */
 
 import ui.View as View;
+import ui.TextView as TextView;
 import src.lib.uiInflater as uiInflater;
-import config as config;
+import src.config as config;
 import animate;
 
 /**
  * @extends ui.View
  */
+
+var BG_WIDTH = 576;
+var BG_HEIGHT = 1024;
+var global;
+
 var TabbedView = exports = Class(function () {
 	this.init = function (opts) {
-		var typeOpts = config.bottom;
+		global = this;
+		var typeOpts = config.layout.bottom;
 		switch (opts.type) {
 			case 'bottom':
-				typeOpts = config.bottom;
+				typeOpts = config.layout.bottom;
 				break;
 			case 'top':
-				typeOpts = config.bottom;
+				typeOpts = config.layout.bottom;
 				break;
 			case 'left':
-				typeOpts = config.bottom;
+				typeOpts = config.layout.bottom;
 				break;
 			case 'right':
-				typeOpts = config.bottom;
+				typeOpts = config.layout.bottom;
 				break;			
 		};
 		
 		typeOpts = merge(typeOpts, { 
 			superview: opts.superview
 		});
+		this._typeOpts = typeOpts;	// Store opts for future use
 		this.rootView = opts.rootView || opts.parent || opts.superview;
-		// layer views: recycled and initialized from config on reset
-		this.viewPool = new ViewPool({
-		  ctor: opts.viewCtor || TabbedView
-		});		
 
-		this.viewMap = {};
-		
 		this.view = new View(typeOpts);
-		this.customView = new View(typeOpts.customView);
+		this.customView = new View(merge({superview: this.view}, typeOpts.customView));
 		this.numOfTabs = uiInflater.addChildren(opts.children, this.customView);
 		
-		this.tabView = new View(typeOpts.tabView);
-		this.customView.foreach
+		var defaultTab = opts.defaults || 0;
+		this.tabMap = {};
+		this.tabView = new View(merge({superview: this.view}, typeOpts.tabView));
+		this.customView.getSubviews().forEach(bind(this, function(view, i) {
+			var tabElement = new TabElement({
+				superview: this.tabView,
+				width: BG_WIDTH / this.numOfTabs,
+				height: this._typeOpts.tabViewHeight,
+				backgroundColor: "#888", //blue,
+				name: view.name
+			});
+
+			this.tabMap[view.name] = tabElement;
+
+			if (i == defaultTab) {
+				console.log("defaults");
+				tabElement.setActive(true);
+				this.setCurrentView(view);
+			} else {
+				view.style.visible = false;
+			}
+		}));
 	};
 
-	this.getCurrentView = function () {
-		if (!this.stack.length) { return null; }
-		return this.stack[this.stack.length - 1];
+	this.getCurrentView = function() {
+		return this.currentView;
 	};
 
-	/**
-	* reset: prepares the tabbed view for use based on provided config
-	* ~ see README.md for details on config parameter
-	*/
-	this.reset = function (config) {
-		this.releaseViews();
-		this.initializeViews(config);	
-	};
-	
-	/**
-	* releaseViews: release all views to their respective pools
-	*/
-	this.releaseViews = function () {
-		// this.layerMap = {};
-		// this.layerPool.forEachActiveView(function (layer, i) {
-		  // layer.pieces.length = 0;
-		  // layer.removeFromSuperview();
-		  // layer.piecePool.releaseAllViews();
-		  // this.layerPool.releaseView(layer);
-		// }, this);
-	};
-	
-	/**
-	* initializeViews: prepare views based on config for a fresh tabbed panel
-	* ~ see README.md for details on config parameter
-	*/
-	this.initializeViews = function (config) {
-		this.initializeLayout(config.tabInfo);
-	
-		for (var i = 0, len = config.children.length; i < len; i++) {
-			var viewOpts = merge({ parent: this.rootView }, this._opts);
-			var view = this.viewPool.obtainView(viewOpts);
-			view.reset(config[i], i);
-			// populate initial layers to fill the screen
-			this.viewMap[layer.id] = layer;
+	this.setCurrentView = function(view) {
+		if (this.currentView) {
+			this.currentView.style.visible = false;
+			this.tabMap[this.currentView.name].style.backgroundColor = "#888";
 		}
+
+		this.currentView = view;
+		this.currentView.style.visible = true;
+		this.tabMap[this.currentView.name].style.backgroundColor = "#800";
 	};
 
-	/**
-	* initializeLayout: prepare layout for the Tabbed panel
-	* To-Do: create config to allow customized tabbed control position, for now put it at the bottom
-	* ~ see README.md for details on config parameter
-	* 		~ numOfTabs: the total tabs
-	*		~ type: refer to the layout declared in config.js
-	*/
-	this.initializeLayout = function (opts) {
-		// top, right, left, bottom 
-		var typeOpts = config.bottom;
-		switch (opts.type) {
-			case 'bottom':
-				typeOpts = config.bottom;
-				break;
-			case 'top':
-				typeOpts = config.bottom;
-				break;
-			case 'left':
-				typeOpts = config.bottom;
-				break;
-			case 'right':
-				typeOpts = config.bottom;
-				break;			
-		};
-		
-		
-	};
+	this.onTabSelected = function(tabName) {
+		this.customView.getSubviews().forEach(bind(this, function(view, i) {
+			if (view.name == tabName) {
+				console.log("Select tab: " + tabName);
+				this.setCurrentView(view);
+			}
+		}));
+	}
 });
 
-// the Parallax Layer Class
-var TabbedView = exports.TabbedView = Class(View, function () {
+// the Tab Element Class
+var TabElement = exports.TabElement = Class(View, function () {
 	var sup = View.prototype;
-	var _uid = 0;
-	
+	var name = 'No name';
+
 	this.init = function (opts) {
 		sup.init.call(this, opts);
+
+		this.name = opts.name ? opts.name : name;
+		console.log("the name is " + this.name);
+
+		this.isActive = false;
+		this.textView = new TextView({
+			superview: this,
+			text: this.name,
+			color: "#FFF",
+			size: 20,
+			width: this.style.width,
+			height: this.style.height / 2,
+			autoFontSize: false,
+			wrap: true
+		});
+
+		this.on('InputSelect', bind(this, function() {
+			global.onTabSelected(this.name);
+		}));
 	};
-	
-	this.reset = function (config, index) {
-		var superview = this.getSuperview();
+
+	this.setActive = function(active) {
+		this.isActive = active;
 	}
- )};
+});
