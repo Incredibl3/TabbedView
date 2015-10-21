@@ -1,56 +1,17 @@
 import device;
 import ui.TextView as TextView;
-import src.TabbedView as TabbedView;
+import src.view.portalView as portalView;
+import src.lib.TabbedView as TabbedView;
 
 var BG_WIDTH = 576;
 var BG_HEIGHT = 1024;
+var type = portalView.type;
+
 exports = Class(GC.Application, function () {
 
   this.initUI = function () {
     this.setScreenDimensions(BG_WIDTH > BG_HEIGHT);
-
-    this.tabbedView = new TabbedView({
-      type : 'bottom',
-      superview: this.view,
-      children : [
-        {
-          name: 'textview1',
-          cls: 'ui.TextView',
-          text: "Click to dismiss!\nThis is the front view.",
-          backgroundColor: "#00F", //blue,
-          color: "#FFF",
-          size: 20,
-          width: BG_WIDTH,
-          height: BG_HEIGHT - 100,
-          autoFontSize: false,
-          wrap: true
-        },
-        {
-          name: 'textview2',
-          cls: 'ui.TextView',
-          text: "Click to dismiss!\nThis is the middle view.",
-          backgroundColor: "#080", //green
-          color: "#FFF",
-          size: 20,
-          width: BG_WIDTH,
-          height: BG_HEIGHT - 100,
-          autoFontSize: false,
-          wrap: true
-        },
-        {
-          name: 'textview3',
-          cls: 'ui.TextView',
-          text: "Click to dismiss!\nThis is the back view.",
-          backgroundColor: "#F00", //red
-          color: "#FFF",
-          size: 20,
-          width: BG_WIDTH,
-          height: BG_HEIGHT - 100,
-          autoFontSize: false,
-          wrap: true
-        }        
-      ]
-    });
+    this.tabbedView = new TabbedView(merge({superview: this.view}, portalView));
 
   };
 

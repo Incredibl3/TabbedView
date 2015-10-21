@@ -12,7 +12,7 @@
 import ui.View as View;
 import ui.TextView as TextView;
 import src.lib.uiInflater as uiInflater;
-import src.config as config;
+import src.lib.config as config;
 import animate;
 
 /**
@@ -58,6 +58,7 @@ var TabbedView = exports = Class(function () {
 		this.customView.getSubviews().forEach(bind(this, function(view, i) {
 			var tabElement = new TabElement({
 				superview: this.tabView,
+				layout: 'box',
 				width: BG_WIDTH / this.numOfTabs,
 				height: this._typeOpts.tabViewHeight,
 				backgroundColor: "#888", //blue,
@@ -117,7 +118,8 @@ var TabElement = exports.TabElement = Class(View, function () {
 			superview: this,
 			text: this.name,
 			color: "#FFF",
-			size: 20,
+			size: 40,
+			centerY: true,
 			width: this.style.width,
 			height: this.style.height / 2,
 			autoFontSize: false,

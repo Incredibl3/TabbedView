@@ -1,5 +1,7 @@
 import ui.View as View;
-import src.config as config;
+import ui.widget.ButtonView as ButtonView;
+import src.lib.config as config;
+// import src.view.GameView;
 
 var resolveClass = function(className) {
 	if (className) {
