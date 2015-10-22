@@ -3,6 +3,7 @@ import device;
 var BG_WIDTH = 576;
 var	BG_HEIGHT = 1024;
 
+
 exports = {
 	type: 'bottom',
 	defaultTab: 1,
@@ -15,7 +16,6 @@ exports = {
 		  color: "#FFF",
 		  size: 20,
 		  width: BG_WIDTH,
-		  height: BG_HEIGHT - 100,
 		  autoFontSize: false,
 		  wrap: true
 		},
@@ -24,7 +24,6 @@ exports = {
 		  cls: 'src.view.GameView',
 		  image: 'resources/images/bg.png',
 		  width: BG_WIDTH,
-		  height: BG_HEIGHT - 100,
 		},
 		{
 		  name: 'textview3',
@@ -34,7 +33,6 @@ exports = {
 		  color: "#FFF",
 		  size: 20,
 		  width: BG_WIDTH,
-		  height: BG_HEIGHT - 100,
 		  autoFontSize: false,
 		  wrap: true
 		}        

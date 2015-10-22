@@ -1,4 +1,5 @@
 import device;
+import ui.View as View;
 import ui.TextView as TextView;
 import src.view.portalView as portalView;
 import src.lib.TabbedView as TabbedView;
@@ -11,8 +12,16 @@ exports = Class(GC.Application, function () {
 
   this.initUI = function () {
     this.setScreenDimensions(BG_WIDTH > BG_HEIGHT);
-    this.tabbedView = new TabbedView(merge({superview: this.view}, portalView));
 
+    // blocks player input to avoid traversing game elements' view hierarchy
+    this.bgLayer = new View({
+      parent: this.view,
+      y: this.view.style.height - BG_HEIGHT,
+      width: BG_WIDTH,
+      height: BG_HEIGHT
+    });
+
+    this.tabbedView = new TabbedView(merge({superview: this.bgLayer, tabViewHeight: 50}, portalView));
   };
 
   this.launchUI = function () {

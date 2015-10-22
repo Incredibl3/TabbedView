@@ -102,7 +102,7 @@ exports = {
 				]
 			},
 			{
-				name: 'pauseButton',
+				name: 'button',
 				cls: 'ui.widget.ButtonView',
 				layout: 'box',
 				x: 500,

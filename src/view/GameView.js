@@ -11,8 +11,10 @@ var SCROLLVIEW_HEIGHT = template.scrollview_height;
 var ITEM_HEIGHT = template.item_height;
 var ITEM_SPACING = template.item_spacing;
 
+var rootview;
 exports = Class(ImageView, function(supr) {	
 	this.init = function(opts) {
+		rootview = this;
 		supr(this, 'init', [opts]);
 
 		this.games = {};
@@ -71,16 +73,19 @@ exports = Class(ImageView, function(supr) {
 			var gameItem = this.buildGameItem(child, i);
 			uiInflater.addChildren(item_layout, gameItem);
 			gameItem['textInfo'].getSubviews().forEach(function(view, i) {
-				console.log("child name " + view.name);
+				// console.log("child name " + view.name);
 				if (view.name == 'title') {
-					console.log('text: ' + title);
+					// console.log('text: ' + title);
 					view.setText(title);
 				} else if (view.name == 'description') {
-					console.log('description: ' + description);
+					// console.log('description: ' + description);
 					view.setText(description);
 				}
 			});
 			gameItem['icon'].setImage(icon);
+			gameItem['button'].onClick = function() {
+				// console.log("click button on: " + i);
+			}
 			this.games[i] = gameItem;
 		}));
 	};

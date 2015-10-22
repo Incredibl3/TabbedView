@@ -32,35 +32,50 @@ var TabbedView = exports = Class(function () {
 				typeOpts = config.layout.bottom;
 				break;
 			case 'top':
-				typeOpts = config.layout.bottom;
+				typeOpts = config.layout.top;
 				break;
 			case 'left':
-				typeOpts = config.layout.bottom;
+				typeOpts = config.layout.left;
 				break;
 			case 'right':
-				typeOpts = config.layout.bottom;
+				typeOpts = config.layout.right;
 				break;			
 		};
 		
+		this.rootView = opts.rootView || opts.parent || opts.superview;
+		console.log("rootView: " + this.rootView.style.y);
+
+		var tab_height = opts.tabViewHeight || typeOpts.tabViewHeight;
+		console.log("tabViewHeight: " + tab_height);
+
+		// console.log("typeOpts: " + JSON.stringify(typeOpts));
 		typeOpts = merge(typeOpts, { 
-			superview: opts.superview
+			superview: opts.superview,
+			y: -this.rootView.style.y,
+			height: BG_HEIGHT + this.rootView.style.y
 		});
 		this._typeOpts = typeOpts;	// Store opts for future use
-		this.rootView = opts.rootView || opts.parent || opts.superview;
-
 		this.view = new View(typeOpts);
-		this.customView = new View(merge({superview: this.view}, typeOpts.customView));
+		this.customView = new View(merge({
+			superview: this.view,
+			height: BG_HEIGHT + this.rootView.style.y - tab_height
+		}, typeOpts.customView));
+		opts.children.forEach(bind(this, function(child, i) {
+			console.log("child before: " + JSON.stringify(child));
+			child.height = child.height || this.customView.style.height;
+			console.log("child after: " + JSON.stringify(child));
+		}));
 		this.numOfTabs = uiInflater.addChildren(opts.children, this.customView);
 		
 		var defaultTab = opts.defaults || 0;
 		this.tabMap = {};
-		this.tabView = new View(merge({superview: this.view}, typeOpts.tabView));
+		this.tabView = new View(merge({superview: this.view, height: tab_height}, typeOpts.tabView));
 		this.customView.getSubviews().forEach(bind(this, function(view, i) {
 			var tabElement = new TabElement({
 				superview: this.tabView,
 				layout: 'box',
 				width: BG_WIDTH / this.numOfTabs,
-				height: this._typeOpts.tabViewHeight,
+				height: tab_height,
 				backgroundColor: "#888", //blue,
 				name: view.name
 			});
@@ -68,7 +83,6 @@ var TabbedView = exports = Class(function () {
 			this.tabMap[view.name] = tabElement;
 
 			if (i == defaultTab) {
-				console.log("defaults");
 				tabElement.setActive(true);
 				this.setCurrentView(view);
 			} else {
@@ -95,7 +109,6 @@ var TabbedView = exports = Class(function () {
 	this.onTabSelected = function(tabName) {
 		this.customView.getSubviews().forEach(bind(this, function(view, i) {
 			if (view.name == tabName) {
-				console.log("Select tab: " + tabName);
 				this.setCurrentView(view);
 			}
 		}));
@@ -109,9 +122,7 @@ var TabElement = exports.TabElement = Class(View, function () {
 
 	this.init = function (opts) {
 		sup.init.call(this, opts);
-
 		this.name = opts.name ? opts.name : name;
-		console.log("the name is " + this.name);
 
 		this.isActive = false;
 		this.textView = new TextView({
