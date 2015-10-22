@@ -108,14 +108,15 @@ exports = {
 				name: 'button',
 				cls: 'ui.widget.ButtonView',
 				layout: 'box',
-				x: 500,
-				autoSize: true,
+				left: 15,
+				y: (ITEM_HEIGHT - 20 - 48) / 2,
+				width: 143,
+				height: 48,
 				images: {
-					"up": "resources/images/button_pause.png",
-					"down": "resources/images/button_pause_pressed.png"
+					"up": "resources/images/playbutton.png",
+					"down": "resources/images/playbutton.png"
 				},
-				scale: 0.6,
-				inLayout: false,
+				order: 3
 			}
 		]
 	}

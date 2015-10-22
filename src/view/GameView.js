@@ -95,7 +95,7 @@ exports = Class(ImageView, function(supr) {
 			});
 			gameItem['icon'].setImage(icon);
 			gameItem['button'].onClick = function() {
-				// console.log("click button on: " + i);
+				console.log("click button on: " + i);
 			}
 			this.games[i] = gameItem;
 		}));
