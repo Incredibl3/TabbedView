@@ -68,7 +68,7 @@ var TabbedView = exports = Class(function () {
 		}));
 		this.numOfTabs = uiInflater.addChildren(opts.children, this.customView);
 		
-		var defaultTab = opts.defaults || 0;
+		var defaultTab = opts.defaultTab || 0;
 		this.tabMap = {};
 		this.tabView = new ImageView(merge({superview: this.view, height: tab_height, y: this.view.style.height - tab_height}, typeOpts.tabView));
 		this.customView.getSubviews().forEach(bind(this, function(view, i) {
