@@ -10,6 +10,7 @@
  */
 
 import ui.View as View;
+import ui.ImageView as ImageView;
 import ui.TextView as TextView;
 import src.lib.uiInflater as uiInflater;
 import src.lib.config as config;
@@ -58,7 +59,7 @@ var TabbedView = exports = Class(function () {
 		this.view = new View(typeOpts);
 		this.customView = new View(merge({
 			superview: this.view,
-			height: BG_HEIGHT + this.rootView.style.y - tab_height
+			height: BG_HEIGHT + this.rootView.style.y
 		}, typeOpts.customView));
 		opts.children.forEach(bind(this, function(child, i) {
 			console.log("child before: " + JSON.stringify(child));
@@ -69,14 +70,13 @@ var TabbedView = exports = Class(function () {
 		
 		var defaultTab = opts.defaults || 0;
 		this.tabMap = {};
-		this.tabView = new View(merge({superview: this.view, height: tab_height}, typeOpts.tabView));
+		this.tabView = new ImageView(merge({superview: this.view, height: tab_height, y: this.view.style.height - tab_height}, typeOpts.tabView));
 		this.customView.getSubviews().forEach(bind(this, function(view, i) {
 			var tabElement = new TabElement({
 				superview: this.tabView,
 				layout: 'box',
 				width: BG_WIDTH / this.numOfTabs,
 				height: tab_height,
-				backgroundColor: "#888", //blue,
 				name: view.name
 			});
 
@@ -98,12 +98,12 @@ var TabbedView = exports = Class(function () {
 	this.setCurrentView = function(view) {
 		if (this.currentView) {
 			this.currentView.style.visible = false;
-			this.tabMap[this.currentView.name].style.backgroundColor = "#888";
+			// this.tabMap[this.currentView.name].style.backgroundColor = "#888";
 		}
 
 		this.currentView = view;
 		this.currentView.style.visible = true;
-		this.tabMap[this.currentView.name].style.backgroundColor = "#800";
+		// this.tabMap[this.currentView.name].style.backgroundColor = "#800";
 	};
 
 	this.onTabSelected = function(tabName) {
@@ -129,8 +129,9 @@ var TabElement = exports.TabElement = Class(View, function () {
 			superview: this,
 			text: this.name,
 			color: "#FFF",
-			size: 40,
-			centerY: true,
+			verticalAlign: 'middle',
+			size: 30,
+			y: this.style.height / 4,
 			width: this.style.width,
 			height: this.style.height / 2,
 			autoFontSize: false,

@@ -21,7 +21,7 @@ exports = Class(GC.Application, function () {
       height: BG_HEIGHT
     });
 
-    this.tabbedView = new TabbedView(merge({superview: this.bgLayer, tabViewHeight: 50}, portalView));
+    this.tabbedView = new TabbedView(merge({superview: this.bgLayer}, portalView));
   };
 
   this.launchUI = function () {

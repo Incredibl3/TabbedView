@@ -43,7 +43,8 @@ exports = {
 				width: BG_WIDTH,
 				height: TAB_VERTICAL_HEIGHT,
 				zIndex: 9999,
-				order: 2
+				inLayout: false,
+				image: 'resources/images/tabpanel.png'
 			}
 		}
 	}

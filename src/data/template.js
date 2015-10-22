@@ -1,11 +1,12 @@
 import device;
 
 var ITEM_PER_PAGE = 3;
+var ITEMVIEW_WIDTH = 546;
 var ITEM_HEIGHT = 150;
 var LEFT_MARGIN = 10;
 var TOP_MARGIN = 20;
-var ICON_WIDTH = 120;
-var ICON_HEIGHT = 120;
+var ICON_WIDTH = 110;
+var ICON_HEIGHT = 110;
 var TEXTVIEW_WIDTH = 250;
 var SCROLLVIEW_WIDTH = 576;
 var ITEM_SPACING = 10;
@@ -17,6 +18,7 @@ exports = {
 	item_per_page: ITEM_PER_PAGE,
 	item_height: ITEM_HEIGHT,
 	item_spacing: ITEM_SPACING,
+	itemview_width: ITEMVIEW_WIDTH,
 	scrollview_width: SCROLLVIEW_WIDTH,
 	scrollview_height: SCROLLVIEW_HEIGHT,
 	games: [
@@ -45,14 +47,13 @@ exports = {
 		name: 'layout',
 		layout: 'linear',
 		direction: 'horizontal',
-		backgroundcolor: '#FFF',
-		width: SCROLLVIEW_WIDTH,
+		width: ITEMVIEW_WIDTH,
 		height: ITEM_HEIGHT,
 		children: [
 			{
 				name: 'icon',
 				cls: 'ui.ImageView',
-				y: (ITEM_HEIGHT - ICON_HEIGHT) / 2,
+				y: (ITEM_HEIGHT - 20 - ICON_HEIGHT) / 2,
 				left: LEFT_MARGIN,
 				width: ICON_WIDTH,
 				height: ICON_HEIGHT,
@@ -93,6 +94,8 @@ exports = {
 						size: 20,
 						horizontalAlign: 'left',
 						verticalAlign: 'top',
+						wrap: false,
+						clip: true,
 						width: TEXTVIEW_WIDTH,
 						height: DESCRIPTION_HEIGHT,
 						canHandleEvents: false,

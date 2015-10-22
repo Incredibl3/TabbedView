@@ -6,10 +6,12 @@ import src.lib.uiInflater as uiInflater;
 import src.data.template as template;
 
 var ITEM_PER_PAGE = template.item_per_page;
+var ITEMVIEW_WIDTH = template.itemview_width;
 var SCROLLVIEW_WIDTH = template.scrollview_width;
-var SCROLLVIEW_HEIGHT = template.scrollview_height;
+var SCROLLVIEW_HEIGHT = template.scrollview_height - 1;
 var ITEM_HEIGHT = template.item_height;
 var ITEM_SPACING = template.item_spacing;
+var BG_WIDTH = 576;
 
 var rootview;
 exports = Class(ImageView, function(supr) {	
@@ -22,6 +24,15 @@ exports = Class(ImageView, function(supr) {
 	};
 
 	this.buildView = function() {
+		this.adsBanner = new ImageView({
+			superview: this, 
+			x: 0,
+			y: 0,
+			width: 576,
+			height: 186,
+			image: 'resources/images/adbanner.png'
+		})
+
 		this.gameList = new ScrollView({
 			superview: this,
 			x: 0,
@@ -93,16 +104,16 @@ exports = Class(ImageView, function(supr) {
 	this.buildGameItem = function(opts, i) {
 		var gameItem = new GameItem(merge({
 			superview: this.gameList,
-			x: 0,
+			x: (SCROLLVIEW_WIDTH - ITEMVIEW_WIDTH) / 2,
 			y: i * (ITEM_HEIGHT + ITEM_SPACING),
-			backgroundColor: '#FFF',
+			image: 'resources/images/item_bg.png'
 		}, template.layout));
 
 		return gameItem;
 	};
 });
 
-var GameItem = exports.gameItem = Class(View, function(supr) {
+var GameItem = exports.gameItem = Class(ImageView, function(supr) {
 	this.init = function(opts) {
 		supr(this, 'init', [opts]);
 
