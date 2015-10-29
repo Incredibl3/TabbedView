@@ -42,7 +42,7 @@ exports = Class(ImageView, function(supr) {
 			scrollX: false,
 			scrollBounds: {
 				minY: 0,
-				maxY: ITEM_HEIGHT * 4
+				maxY: ITEM_HEIGHT * 5
 			}
 		});
 
@@ -95,7 +95,8 @@ exports = Class(ImageView, function(supr) {
 			});
 			gameItem['icon'].setImage(icon);
 			gameItem['button'].onClick = function() {
-				console.log("click button on: " + i);
+				console.log("Click on button: " + gameItem.location);
+				window.location = gameItem.location;
 			}
 			this.games[i] = gameItem;
 		}));
@@ -106,7 +107,8 @@ exports = Class(ImageView, function(supr) {
 			superview: this.gameList,
 			x: (SCROLLVIEW_WIDTH - ITEMVIEW_WIDTH) / 2,
 			y: i * (ITEM_HEIGHT + ITEM_SPACING),
-			image: 'resources/images/item_bg.png'
+			image: 'resources/images/item_bg.png',
+			location: opts.location
 		}, template.layout));
 
 		return gameItem;
@@ -114,9 +116,12 @@ exports = Class(ImageView, function(supr) {
 });
 
 var GameItem = exports.gameItem = Class(ImageView, function(supr) {
+	var location;
+
 	this.init = function(opts) {
 		supr(this, 'init', [opts]);
 
+		this.location = opts.location;
 		this.buildView(opts);
 	};
 

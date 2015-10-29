@@ -25,23 +25,33 @@ exports = {
 		{
 			title: 'Alley Cat Stack',
 			description: 'Stacker game with Cats',
-			icon: 'resources/images/templates/alley.png'
+			icon: 'resources/images/templates/alley.png',
+			location: "games/alley/index.html"
 		},
 		{
 			title: 'Kaiju Stack',
 			description: 'Stacker game: An attack from alliens',
-			icon: 'resources/images/templates/kaiju.png'
+			icon: 'resources/images/templates/kaiju.png',
+			location: "games/kaiju/index.html"
 		},
 		{
 			title: 'Penguin Toss',
 			description: 'Stacker game with Penguins',
-			icon: 'resources/images/templates/penguintoss.png'
+			icon: 'resources/images/templates/penguintoss.png',
+			location: "games/penguin/index.html"
 		},		
 		{
 			title: 'Lulu\' Sweet Shoppe',
 			description: 'Match-3 game',
-			icon: 'resources/images/templates/lulu.png'
-		}
+			icon: 'resources/images/templates/lulu.png',
+			location: "games/lulu/index.html"
+		},
+		{
+			title: 'Freaking Math',
+			description: 'IQ game',
+			icon: 'resources/images/templates/lulu.png',
+			location: "games/FreakingMath/index.html"
+		}		
 	],
 	layout: {
 		name: 'layout',
