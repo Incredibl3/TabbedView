@@ -4,6 +4,7 @@ import ui.ImageView as ImageView;
 import ui.ScrollView as ScrollView;
 import src.lib.uiInflater as uiInflater;
 import src.data.template as template;
+import util.ajax as ajax;
 
 var ITEM_PER_PAGE = template.item_per_page;
 var ITEMVIEW_WIDTH = template.itemview_width;
@@ -46,12 +47,25 @@ exports = Class(ImageView, function(supr) {
 			}
 		});
 
-		this.extractInfo(template.games);
+		// this.extractInfo(template.games);
+
+		ajax.get({
+		  url: 'http://128.199.109.41:3100/apps/lists',
+		  headers: {'Content-Type': 'text/plain'},
+		  type: 'json'
+		}, bind(this, function (err, response) {
+		  if (err) {
+		    console.error('someting went wrong');
+		  } else {
+		    // console.log(JSON.stringify(response));
+		    this.extractInfo(response);
+		  }
+		}));
 	};
 
 	// Todo in the future: opts is get from server
 	this.extractInfo = function(opts) {
-		template.games.forEach(bind(this, function(child, i) {
+		opts.forEach(bind(this, function(child, i) {
 			// child:
 			// {
 			// 	title: 'Alley Cat Stack',

@@ -1,7 +1,7 @@
 {
   "appID": "ba5b683cfb944616be8d38bcf0bc9c70",
   "dependencies": {
-    "devkit-core": "https://github.com/gameclosure/devkit-core#v3.0.2"
+    "devkit-core": "https://github.com/gameclosure/devkit-core#v4.2.3"
   },
   "shortName": "tabbed",
   "studio": {
