@@ -51,8 +51,10 @@ var TabbedView = exports = Class(function () {
 
 		// console.log("typeOpts: " + JSON.stringify(typeOpts));
 		typeOpts = merge(typeOpts, { 
-			superview: opts.superview,
+			superview: this.rootView,
+			x: 0,
 			y: -this.rootView.style.y,
+			width: BG_WIDTH,
 			height: BG_HEIGHT + this.rootView.style.y
 		});
 		this._typeOpts = typeOpts;	// Store opts for future use
@@ -139,6 +141,7 @@ var TabElement = exports.TabElement = Class(View, function () {
 		});
 
 		this.on('InputSelect', bind(this, function() {
+			console.log("Tiendv - on Tab selected");
 			global.onTabSelected(this.name);
 		}));
 	};

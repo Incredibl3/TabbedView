@@ -1,7 +1,8 @@
 {
   "appID": "ba5b683cfb944616be8d38bcf0bc9c70",
   "dependencies": {
-    "devkit-core": "https://github.com/gameclosure/devkit-core#v4.2.3"
+    "devkit-core": "https://github.com/gameclosure/devkit-core#v4.2.3",
+    "nativeframework": "https://bitbucket.org/incredibl3/nativeframework#v0.0.3"
   },
   "shortName": "tabbed",
   "studio": {

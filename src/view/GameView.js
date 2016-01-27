@@ -66,13 +66,6 @@ exports = Class(ImageView, function(supr) {
 	// Todo in the future: opts is get from server
 	this.extractInfo = function(opts) {
 		opts.forEach(bind(this, function(child, i) {
-			// child:
-			// {
-			// 	title: 'Alley Cat Stack',
-			// 	description: 'Stacker game with Cats',
-			// 	icon: 'resources/images/templates/alley.png'
-			// },
-
 			var item_layout = template.layout.children;
 			var title = '';
 			var description = '';
