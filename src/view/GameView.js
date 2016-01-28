@@ -5,6 +5,7 @@ import ui.ScrollView as ScrollView;
 import src.lib.uiInflater as uiInflater;
 import src.data.template as template;
 import util.ajax as ajax;
+import nativeframework.webview as webview;
 
 var ITEM_PER_PAGE = template.item_per_page;
 var ITEMVIEW_WIDTH = template.itemview_width;
@@ -65,6 +66,13 @@ exports = Class(ImageView, function(supr) {
 
 	// Todo in the future: opts is get from server
 	this.extractInfo = function(opts) {
+		this.gameList.updateOpts({
+			scrollBounds: {
+				minY: 0,
+				maxY: ITEM_HEIGHT * opts.length
+			}
+		});
+
 		opts.forEach(bind(this, function(child, i) {
 			var item_layout = template.layout.children;
 			var title = '';
@@ -103,7 +111,7 @@ exports = Class(ImageView, function(supr) {
 			gameItem['icon'].setImage(icon);
 			gameItem['button'].onClick = function() {
 				console.log("Click on button: " + gameItem.location);
-				window.location = gameItem.location;
+				webview.openURL({url: title});
 			}
 			this.games[i] = gameItem;
 		}));
