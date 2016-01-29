@@ -1,0 +1,15 @@
+//
+//  FreemiumIGPConfig.h
+//  com.gameloft.freemiumIGP
+//
+//  Created by Mihai Dan Popa on 9/26/12.
+//  Copyright (c) 2012 Gameloft. All rights reserved.
+//
+
+#ifndef com_gameloft_IGBrowser_Config_h
+#define com_gameloft_IGBrowser_Config_h
+
+//#define IGB_PORTRAIT_SUPPORT
+#define GAME_USES_VIEWCONTROLLER
+
+#endif

@@ -1,0 +1,221 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		983C412C0B0E5356B6D9476C /* InGameBrowser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5F80749ADCC2E28423DF52DA /* InGameBrowser.mm */; };
+		E308231AD51CC444E720895A /* InGameBrowserNative.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3CD65A847FA0292572BA3E8 /* InGameBrowserNative.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4607413607AC4320AEDA9F76 /* InGameBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InGameBrowser.h; path = ../../../include/InGameBrowser/InGameBrowser.h; sourceTree = "<group>"; };
+		484497725D634F5C93BDB5B2 /* release-project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "release-project.xcconfig"; path = "xcconfigs_InGameBrowser/release-project.xcconfig"; sourceTree = "<group>"; };
+		5F80749ADCC2E28423DF52DA /* InGameBrowser.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objc; name = InGameBrowser.mm; path = ../../../src/InGameBrowser.mm; sourceTree = "<group>"; };
+		8FE5C5A010955B8AF62DA3E0 /* SynthesizeSingletonIGBGameloft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingletonIGBGameloft.h; path = ../../../src/SynthesizeSingletonIGBGameloft.h; sourceTree = "<group>"; };
+		98126B246FBEC58EA64C1964 /* InGameBrowserNative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InGameBrowserNative.h; path = ../../../src/InGameBrowserNative.h; sourceTree = "<group>"; };
+		B19C0CB280F7C21C03B89AF2 /* release-target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "release-target.xcconfig"; path = "xcconfigs_InGameBrowser/release-target.xcconfig"; sourceTree = "<group>"; };
+		C3EC0D3ED72760283D100B7E /* debug-project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "debug-project.xcconfig"; path = "xcconfigs_InGameBrowser/debug-project.xcconfig"; sourceTree = "<group>"; };
+		C64256B8BEC7EDA2F548D4F8 /* InGameBrowser */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = InGameBrowser; path = libInGameBrowser_d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3CD65A847FA0292572BA3E8 /* InGameBrowserNative.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objc; name = InGameBrowserNative.mm; path = ../../../src/InGameBrowserNative.mm; sourceTree = "<group>"; };
+		D835743EAFCB04A82FC4E27E /* debug-target.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "debug-target.xcconfig"; path = "xcconfigs_InGameBrowser/debug-target.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AD5B33281D65E5129A5C9168 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0126983F259BDE29879C767F /* xcconfigs */ = {
+			isa = PBXGroup;
+			children = (
+				C3EC0D3ED72760283D100B7E /* debug-project.xcconfig */,
+				D835743EAFCB04A82FC4E27E /* debug-target.xcconfig */,
+				484497725D634F5C93BDB5B2 /* release-project.xcconfig */,
+				B19C0CB280F7C21C03B89AF2 /* release-target.xcconfig */,
+			);
+			name = xcconfigs;
+			sourceTree = "<group>";
+		};
+		01EA4EA651043A10D87C9CE6 /* InGameBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				4607413607AC4320AEDA9F76 /* InGameBrowser.h */,
+			);
+			name = InGameBrowser;
+			sourceTree = "<group>";
+		};
+		67682C997E46950362CE9AD9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				5F80749ADCC2E28423DF52DA /* InGameBrowser.mm */,
+				98126B246FBEC58EA64C1964 /* InGameBrowserNative.h */,
+				D3CD65A847FA0292572BA3E8 /* InGameBrowserNative.mm */,
+				8FE5C5A010955B8AF62DA3E0 /* SynthesizeSingletonIGBGameloft.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		9E4EB2D17C9BE53B375F6111 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				01EA4EA651043A10D87C9CE6 /* InGameBrowser */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		A2FBC316EE5B4B40E9168956 /* InGameBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				9E4EB2D17C9BE53B375F6111 /* include */,
+				67682C997E46950362CE9AD9 /* src */,
+				0126983F259BDE29879C767F /* xcconfigs */,
+				EA8E290FE2272BF9B2E0274F /* Products */,
+			);
+			name = InGameBrowser;
+			sourceTree = "<group>";
+		};
+		EA8E290FE2272BF9B2E0274F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C64256B8BEC7EDA2F548D4F8 /* InGameBrowser */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0B37DA9E58913C48984790DE /* InGameBrowser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 897D8EE7F98840D1767EED27 /* Build configuration list for PBXNativeTarget "InGameBrowser" */;
+			buildPhases = (
+				2F2C17C89F36C9B21C2D7608 /* Resources */,
+				C8E19F7F38EC5169B5E2FDBF /* Sources */,
+				AD5B33281D65E5129A5C9168 /* Frameworks */,
+				564CCED3A3A6307DE35C8513 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InGameBrowser;
+			productName = InGameBrowser;
+			productReference = C64256B8BEC7EDA2F548D4F8 /* InGameBrowser */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				TargetAttributes = {
+					0B37DA9E58913C48984790DE = {
+					};
+				};
+			};
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "InGameBrowser" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = A2FBC316EE5B4B40E9168956 /* InGameBrowser */;
+			productRefGroup = 3D517EF19908425B643ACD31 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0B37DA9E58913C48984790DE /* InGameBrowser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F2C17C89F36C9B21C2D7608 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C8E19F7F38EC5169B5E2FDBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				983C412C0B0E5356B6D9476C /* InGameBrowser.mm in Sources */,
+				E308231AD51CC444E720895A /* InGameBrowserNative.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0FA2A03EAD2174A842748E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3EC0D3ED72760283D100B7E /* debug-project.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		40BD7CAD588AE857043F72ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B19C0CB280F7C21C03B89AF2 /* release-target.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		A8C15273C40BCB9DAAD0B8B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D835743EAFCB04A82FC4E27E /* debug-target.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		F12F37B8E9B4CEA22035B5F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 484497725D634F5C93BDB5B2 /* release-project.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "InGameBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FA2A03EAD2174A842748E7E /* Debug */,
+				F12F37B8E9B4CEA22035B5F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		897D8EE7F98840D1767EED27 /* Build configuration list for PBXNativeTarget "InGameBrowser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8C15273C40BCB9DAAD0B8B3 /* Debug */,
+				40BD7CAD588AE857043F72ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

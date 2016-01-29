@@ -48,8 +48,6 @@ exports = Class(ImageView, function(supr) {
 			}
 		});
 
-		// this.extractInfo(template.games);
-
 		ajax.get({
 		  url: 'http://128.199.109.41:3100/apps/lists',
 		  headers: {'Content-Type': 'text/plain'},
@@ -58,13 +56,11 @@ exports = Class(ImageView, function(supr) {
 		  if (err) {
 		    console.error('someting went wrong');
 		  } else {
-		    // console.log(JSON.stringify(response));
 		    this.extractInfo(response);
 		  }
 		}));
 	};
 
-	// Todo in the future: opts is get from server
 	this.extractInfo = function(opts) {
 		this.gameList.updateOpts({
 			scrollBounds: {
@@ -99,12 +95,9 @@ exports = Class(ImageView, function(supr) {
 			var gameItem = this.buildGameItem(child, i);
 			uiInflater.addChildren(item_layout, gameItem);
 			gameItem['textInfo'].getSubviews().forEach(function(view, i) {
-				// console.log("child name " + view.name);
 				if (view.name == 'title') {
-					// console.log('text: ' + title);
 					view.setText(title);
 				} else if (view.name == 'description') {
-					// console.log('description: ' + description);
 					view.setText(description);
 				}
 			});

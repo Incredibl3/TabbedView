@@ -1,0 +1,34 @@
+1) Add the InGameBrowser project to your xcodeproject
+   Add InGameBrowser to the list of linked libraries
+   Add "InGameBrowser/include" to your include path
+   
+2) #include "InGameBrowser/InGameBrowser.h"  
+  
+3) Initialize the InGameBrowser:
+	InGameBrowser::InitParams params;
+	params.gameCode = "TEST";
+	params.gameVersion = "1.9.2";
+	params.gameLanguage = "en";
+	params.clientID = "1533:56843:1.9.2:ios:appstore";
+	params.baseURL = "http://ingameads.gameloft.com";
+	params.anonymousAccount = "YW5kcm9pZF82ZjYzN2Y2ZTg5N2MzYjI1";
+	params.userAge = 22;
+	params.parentView = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] view];
+	InGameBrowser::Init(params);
+
+4) Set the user gender:
+	InGameBrowser::SetUserGender(InGameBrowser::GENDER_MALE);
+	
+5) Then you can use it:
+	InGameBrowser::ShowCustomerCare();
+	InGameBrowser::ShowCustomerCareWithBANType(banType);
+	InGameBrowser::ShowNews();
+	InGameBrowser::ShowForum();
+	InGameBrowser::ShowTermsOfUse();
+	InGameBrowser::ShowPrivacyPolicy();
+	InGameBrowser::ShowEULA();
+	InGameBrowser::ShowFacebookShare();
+	InGameBrowser::ShowFacebookPage();
+	InGameBrowser::OpenURL(url);
+	InGameBrowser::LaunchBrowserGameUpdate();
+	InGameBrowser::LaunchBrowserGameReview();
