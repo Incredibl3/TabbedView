@@ -104,7 +104,10 @@ exports = Class(ImageView, function(supr) {
 			gameItem['icon'].setImage(icon);
 			gameItem['button'].onClick = function() {
 				console.log("Click on button: " + gameItem.location);
-				webview.openURL({url: title});
+				if (child.orientation)
+					webview.openURL({url: child.location, orientation: child.orientation});
+				else
+					webview.openURL({url: child.location, orientation: "portrait"});
 			}
 			this.games[i] = gameItem;
 		}));
